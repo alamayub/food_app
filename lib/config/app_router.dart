@@ -14,21 +14,21 @@ class AppRouter {
     switch (settings.name) {
       case '/':
         return HomeScreen.route();
-      case '/location':
+      case LocationScreen.routeName:
         return LocationScreen.route();
-      case '/basket':
+      case BasketScreen.routeName:
         return BasketScreen.route();
-      case '/checkout':
+      case CheckoutScreen.routeName:
         return CheckoutScreen.route();
-      case '/delivery-time':
+      case DeliveryTimeScreen.routeName:
         return DeliveryTimeScreen.route();
-      case '/filter':
+      case FilterScreen.routeName:
         return FilterScreen.route();
-      case '/restaurant-details':
+      case RestaurantDetailsScreen.routeName:
         return RestaurantDetailsScreen.route();
-      case '/restaurant-list':
+      case RestaurantListScreen.routeName:
         return RestaurantListScreen.route();
-      case '/voucher':
+      case VoucherScreen.routeName:
         return VoucherScreen.route();
       default:
         return _errorRoute();
