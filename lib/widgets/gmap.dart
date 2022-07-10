@@ -14,9 +14,10 @@ class Gmap extends StatelessWidget {
   Widget build(BuildContext context) {
     return GoogleMap(
       myLocationEnabled: true,
+      // mapType: MapType.satellite,
       initialCameraPosition: CameraPosition(
         target: LatLng(lat, lng),
-        zoom: 10,
+        zoom: 14,
       ),
     );
   }

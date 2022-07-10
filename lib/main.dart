@@ -4,6 +4,7 @@ import 'package:food_app/blocs/autocomplete/autocomplete_bloc.dart';
 import 'package:food_app/blocs/autocomplete/autocomplete_event.dart';
 import 'package:food_app/blocs/geolocation/geolocation_bloc.dart';
 import 'package:food_app/blocs/geolocation/geolocation_event.dart';
+import 'package:food_app/blocs/place/place_bloc.dart';
 import 'package:food_app/config/app_router.dart';
 import 'package:food_app/config/theme.dart';
 import 'package:food_app/repositories/geolocator/geolocation_repository.dart';
@@ -40,6 +41,11 @@ class MyApp extends StatelessWidget {
             create: (context) => AutocompleteBloc(
               placesRepository: context.read<PlacesRepository>(),
             )..add(const LoadAutocomplete()),
+          ),
+          BlocProvider(
+            create: (context) => PlaceBloc(
+              placesRepository: context.read<PlacesRepository>(),
+            ),
           ),
         ],
         child: MaterialApp(
