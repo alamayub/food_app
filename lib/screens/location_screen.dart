@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app/blocs/autocomplete/autocomplete_bloc.dart';
@@ -92,61 +90,33 @@ class Location extends StatelessWidget {
                   child: CircularProgressIndicator(),
                 );
               } else if (state is AutocompleteLoaded) {
-                // return state.autocomplete.isNotEmpty
-                // ? Container(
-                //     margin: const EdgeInsets.only(top: 8.0),
-                //     height: 300,
-                //     color: Colors.black.withOpacity(0.6),
-                //     child: ListView.builder(
-                //       shrinkWrap: true,
-                //       itemCount: state.autocomplete.length,
-                //       itemBuilder: (context, index) {
-                //         return ListTile(
-                //           title: Text(
-                //             state.autocomplete[index].description,
-                //             style: Theme.of(context)
-                //                 .textTheme
-                //                 .headline6!
-                //                 .copyWith(color: Colors.white),
-                //           ),
-                //           onTap: () {
-                //             context.read<PlaceBloc>().add(LoadPlace(
-                //                 placeId:
-                //                     state.autocomplete[index].placeId));
-                //           },
-                //         );
-                //       },
-                //     ),
-                //   )
-                //     : Container();
-                return Container(
-                  margin: const EdgeInsets.only(top: 8.0),
-                  height: 300,
-                  color: Colors.black.withOpacity(0.6),
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: 5,
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        title: Text(
-                          'Test Location $index',
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline6!
-                              .copyWith(color: Colors.white),
+                return state.autocomplete.isNotEmpty
+                    ? Container(
+                        margin: const EdgeInsets.only(top: 8.0),
+                        height: 300,
+                        color: Colors.black.withOpacity(0.6),
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: state.autocomplete.length,
+                          itemBuilder: (context, index) {
+                            return ListTile(
+                              title: Text(
+                                state.autocomplete[index].description,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline6!
+                                    .copyWith(color: Colors.white),
+                              ),
+                              onTap: () {
+                                context.read<PlaceBloc>().add(LoadPlace(
+                                    placeId:
+                                        state.autocomplete[index].placeId));
+                              },
+                            );
+                          },
                         ),
-                        onTap: () {
-                          log('location clicked');
-                          context
-                              .read<PlaceBloc>()
-                              .add(const LoadPlace(placeId: 'test_id'));
-                          // context.read<PlaceBloc>().add(LoadPlace(
-                          //     placeId: state.autocomplete[index].placeId));
-                        },
-                      );
-                    },
-                  ),
-                );
+                      )
+                    : Container();
               } else {
                 return const Text('Something went wrong...');
               }
