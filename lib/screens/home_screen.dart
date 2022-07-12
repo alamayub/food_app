@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/models/category_model.dart';
+import 'package:food_app/models/restaurant_model.dart';
 import 'package:food_app/widgets/category_box.dart';
 import 'package:food_app/widgets/food_search_box.dart';
 import 'package:food_app/widgets/promo_box.dart';
+import 'package:food_app/widgets/restaurant_card.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -22,6 +24,7 @@ class HomeScreen extends StatelessWidget {
       appBar: const CustomAppbar(),
       body: SingleChildScrollView(
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             // category list
             SizedBox(
@@ -57,7 +60,29 @@ class HomeScreen extends StatelessWidget {
             ),
 
             // food search box
-            const FoodSearchBox()
+            const FoodSearchBox(),
+
+            // top rated restaurants
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: Text(
+                  'Top Rated',
+                  style: Theme.of(context).textTheme.headline4,
+                ),
+              ),
+            ),
+            ListView.separated(
+              primary: false,
+              shrinkWrap: true,
+              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+              itemCount: Restaurant.restaurants.length,
+              itemBuilder: (context, index) => RestaurantCard(
+                restaurant: Restaurant.restaurants[index],
+              ),
+              separatorBuilder: (context, index) => const SizedBox(height: 16),
+            )
           ],
         ),
       ),

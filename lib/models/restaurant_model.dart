@@ -37,7 +37,7 @@ class Restaurant extends Equatable {
     Restaurant(
       id: 1,
       image:
-          'https://www.collinsdictionary.com/images/full/restaurant_135621509.jpg',
+          'https://media.istockphoto.com/photos/two-empty-wine-glasses-sitting-in-a-restaurant-on-a-warm-sunny-picture-id1018141890?k=20&m=1018141890&s=612x612&w=0&h=uMDP00MMIhlwQE77EEcoelc2oSKBT_B6avaXqtxgiow=',
       name: 'Burj Palace Restaurant',
       tags: const ['Italians', 'Indian', 'Pizza'],
       menuItems: MenuItem.menuItems.where((e) => e.id == 1).toList(),
