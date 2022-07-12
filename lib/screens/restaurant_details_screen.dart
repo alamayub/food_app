@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/models/restaurant_model.dart';
+import 'package:food_app/screens/basket_screen.dart';
 import 'package:food_app/widgets/restaurant_info.dart';
 
 class RestaurantDetailsScreen extends StatelessWidget {
@@ -41,19 +42,14 @@ class RestaurantDetailsScreen extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: BottomAppBar(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: Theme.of(context).primaryColor,
-                shape: const RoundedRectangleBorder(),
-                padding: const EdgeInsets.symmetric(horizontal: 50),
-              ),
-              onPressed: () {},
-              child: const Text('Basket'),
-            ),
-          ],
+        child: MaterialButton(
+          height: 50,
+          color: Theme.of(context).primaryColor,
+          onPressed: () {
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const BasketScreen()));
+          },
+          child: const Text('Basket'),
         ),
       ),
     );
