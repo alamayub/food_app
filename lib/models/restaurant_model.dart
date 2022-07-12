@@ -39,7 +39,7 @@ class Restaurant extends Equatable {
       image:
           'https://media.istockphoto.com/photos/two-empty-wine-glasses-sitting-in-a-restaurant-on-a-warm-sunny-picture-id1018141890?k=20&m=1018141890&s=612x612&w=0&h=uMDP00MMIhlwQE77EEcoelc2oSKBT_B6avaXqtxgiow=',
       name: 'Burj Palace Restaurant',
-      tags: const ['Italians', 'Indian', 'Pizza'],
+      tags: const ['Italian', 'Indian', 'Pizza'],
       menuItems: MenuItem.menuItems.where((e) => e.id == 1).toList(),
       deliveryTime: 30,
       deliveryFee: 25.2,
@@ -61,7 +61,7 @@ class Restaurant extends Equatable {
       image:
           'https://cdn.vox-cdn.com/thumbor/5d_RtADj8ncnVqh-afV3mU-XQv0=/0x0:1600x1067/1200x900/filters:focal(672x406:928x662)/cdn.vox-cdn.com/uploads/chorus_image/image/57698831/51951042270_78ea1e8590_h.7.jpg',
       name: 'Macroni Restaurant',
-      tags: const ['Chines', 'Thai', 'Biryani'],
+      tags: const ['Chinese', 'Thai', 'Biryani'],
       menuItems: MenuItem.menuItems.where((e) => e.id == 3).toList(),
       deliveryTime: 30,
       deliveryFee: 25.2,

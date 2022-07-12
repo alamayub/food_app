@@ -4,6 +4,7 @@ class MenuItem extends Equatable {
   final int id;
   final int restaurantId;
   final String name;
+  final String category;
   final String description;
   final double price;
 
@@ -11,6 +12,7 @@ class MenuItem extends Equatable {
     required this.id,
     required this.restaurantId,
     required this.name,
+    required this.category,
     required this.description,
     required this.price,
   });
@@ -23,6 +25,7 @@ class MenuItem extends Equatable {
       id: 1,
       restaurantId: 1,
       name: 'Pizza',
+      category: 'Pizza',
       description: 'Veg pizza with extra cheese',
       price: 399,
     ),
@@ -30,6 +33,7 @@ class MenuItem extends Equatable {
       id: 2,
       restaurantId: 2,
       name: 'Veg Biryani',
+      category: 'Biryani',
       description:
           'It\'s besically pulao, but they call it biryani for thier own satisfaction.',
       price: 100,
@@ -38,6 +42,32 @@ class MenuItem extends Equatable {
       id: 3,
       restaurantId: 1,
       name: 'Dosa',
+      category: 'Indian',
+      description: 'Masala Dosa',
+      price: 250,
+    ),
+    MenuItem(
+      id: 4,
+      restaurantId: 1,
+      name: 'Pizza',
+      category: 'Pizza',
+      description: 'Veg pizza with extra cheese',
+      price: 399,
+    ),
+    MenuItem(
+      id: 5,
+      restaurantId: 2,
+      name: 'Veg Biryani',
+      category: 'Biryani',
+      description:
+          'It\'s besically pulao, but they call it biryani for thier own satisfaction.',
+      price: 100,
+    ),
+    MenuItem(
+      id: 6,
+      restaurantId: 1,
+      name: 'Dosa',
+      category: 'Indian',
       description: 'Masala Dosa',
       price: 250,
     ),

@@ -5,7 +5,6 @@ import 'package:food_app/blocs/autocomplete/autocomplete_event.dart';
 import 'package:food_app/blocs/geolocation/geolocation_bloc.dart';
 import 'package:food_app/blocs/geolocation/geolocation_event.dart';
 import 'package:food_app/blocs/place/place_bloc.dart';
-import 'package:food_app/config/app_router.dart';
 import 'package:food_app/config/theme.dart';
 import 'package:food_app/repositories/geolocator/geolocation_repository.dart';
 import 'package:food_app/repositories/places/places_repository.dart';
@@ -51,8 +50,7 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
           title: 'Flutter Demo',
           theme: theme(),
-          onGenerateRoute: AppRouter.onGenerateRoute,
-          initialRoute: HomeScreen.routeName,
+          home: const HomeScreen(),
         ),
       ),
     );
