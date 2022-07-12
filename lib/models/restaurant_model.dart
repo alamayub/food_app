@@ -8,6 +8,7 @@ class Restaurant extends Equatable {
   final List<String> tags;
   final List<MenuItem> menuItems;
   final int deliveryTime;
+  final String priceCategory;
   final double deliveryFee;
   final double distance;
 
@@ -18,6 +19,7 @@ class Restaurant extends Equatable {
     required this.tags,
     required this.menuItems,
     required this.deliveryTime,
+    required this.priceCategory,
     required this.deliveryFee,
     required this.distance,
   });
@@ -29,6 +31,7 @@ class Restaurant extends Equatable {
         name,
         tags,
         deliveryTime,
+        priceCategory,
         deliveryFee,
         distance,
       ];
@@ -42,6 +45,7 @@ class Restaurant extends Equatable {
       tags: const ['Italian', 'Indian', 'Pizza'],
       menuItems: MenuItem.menuItems.where((e) => e.id == 1).toList(),
       deliveryTime: 30,
+      priceCategory: '\$',
       deliveryFee: 25.2,
       distance: 5.9,
     ),
@@ -53,6 +57,7 @@ class Restaurant extends Equatable {
       tags: const ['Thali', 'Indian', 'Biryani', 'Pizza'],
       menuItems: MenuItem.menuItems.where((e) => e.id == 2).toList(),
       deliveryTime: 30,
+      priceCategory: '\$',
       deliveryFee: 25.2,
       distance: 5.9,
     ),
@@ -64,6 +69,7 @@ class Restaurant extends Equatable {
       tags: const ['Chinese', 'Thai', 'Biryani'],
       menuItems: MenuItem.menuItems.where((e) => e.id == 3).toList(),
       deliveryTime: 30,
+      priceCategory: '\$',
       deliveryFee: 25.2,
       distance: 5.9,
     ),
@@ -75,6 +81,7 @@ class Restaurant extends Equatable {
       tags: const ['Mushroom', 'Indian', 'Biryani', 'Pizza'],
       menuItems: MenuItem.menuItems.where((e) => e.id == 4).toList(),
       deliveryTime: 30,
+      priceCategory: '\$',
       deliveryFee: 25.2,
       distance: 5.9,
     )
