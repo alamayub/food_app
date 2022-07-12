@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/models/category_model.dart';
+import 'package:food_app/models/promo_mode.dart';
 import 'package:food_app/models/restaurant_model.dart';
 import 'package:food_app/widgets/category_box.dart';
 import 'package:food_app/widgets/food_search_box.dart';
@@ -53,8 +54,8 @@ class HomeScreen extends StatelessWidget {
                 ),
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
-                itemCount: Category.categories.length,
-                itemBuilder: (context, index) => const PromoBox(),
+                itemCount: Promo.promos.length,
+                itemBuilder: (context, index) => PromoBox(promo: Promo.promos[index],),
                 separatorBuilder: (context, index) => const SizedBox(width: 16),
               ),
             ),

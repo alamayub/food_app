@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/models/promo_mode.dart';
 
 class PromoBox extends StatelessWidget {
-  const PromoBox({Key? key}) : super(key: key);
+  final Promo promo;
+  const PromoBox({Key? key, required this.promo,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -11,41 +13,60 @@ class PromoBox extends StatelessWidget {
         decoration: BoxDecoration(
           color: Theme.of(context).primaryColor,
           borderRadius: BorderRadius.circular(6),
-          image: const DecorationImage(
-            image: NetworkImage(
-                'https://fiverr-res.cloudinary.com/images/q_auto,f_auto/gigs/128289834/original/39b3cd433ae96fea7fbb1795940ffa4665d6606f/create-restaurant-promo-or-food-promotion-video.png'),
+          image: DecorationImage(
+            image: NetworkImage(promo.image),
             fit: BoxFit.cover,
           ),
         ),
       ),
-      Container(
-        width: MediaQuery.of(context).size.width - 32,
-        decoration: BoxDecoration(
-          color: Theme.of(context).primaryColor,
-          borderRadius: BorderRadius.circular(6),
-        ),
-        padding: const EdgeInsets.only(top: 10, left: 15, right: 125),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'FREE Delivery on Your First 3 Orders.',
-              style: Theme.of(context)
-                  .textTheme
-                  .headline4!
-                  .copyWith(color: Colors.white),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              'Place and Order of \$10 or more and delivery fee is on us.',
-              style: Theme.of(context)
-                  .textTheme
-                  .headline6!
-                  .copyWith(color: Colors.white),
-            ),
-          ],
+      ClipPath(
+        clipper: CustomPathClipper(),
+        child: Container(
+          width: MediaQuery.of(context).size.width - 32,
+          decoration: BoxDecoration(
+            color: Theme.of(context).primaryColor,
+            borderRadius: BorderRadius.circular(6),
+          ),
+          padding: const EdgeInsets.only(top: 10, left: 15, right: 125),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                promo.title,
+                style: Theme.of(context)
+                    .textTheme
+                    .headline4!
+                    .copyWith(color: Colors.white),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                promo.description,
+                style: Theme.of(context)
+                    .textTheme
+                    .headline6!
+                    .copyWith(color: Colors.white),
+              ),
+            ],
+          ),
         ),
       ),
     ]);
+  }
+}
+
+class CustomPathClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    var path = Path();
+    path.lineTo(0, 0);
+    path.lineTo(0, size.height);
+    path.lineTo(225, size.height);
+    path.lineTo(275, 0);
+    return path;
+  }
+
+  @override
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
+    return false;
   }
 }
