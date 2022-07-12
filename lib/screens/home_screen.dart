@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/models/category_model.dart';
 import 'package:food_app/widgets/category_box.dart';
+import 'package:food_app/widgets/food_search_box.dart';
+import 'package:food_app/widgets/promo_box.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -16,6 +18,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
       appBar: const CustomAppbar(),
       body: SingleChildScrollView(
         child: Column(
@@ -38,7 +41,23 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             // promobox list
-            
+            SizedBox(
+              height: 150,
+              child: ListView.separated(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 8,
+                ),
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemCount: Category.categories.length,
+                itemBuilder: (context, index) => const PromoBox(),
+                separatorBuilder: (context, index) => const SizedBox(width: 16),
+              ),
+            ),
+
+            // food search box
+            const FoodSearchBox()
           ],
         ),
       ),
