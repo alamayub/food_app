@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:food_app/models/restaurant_model.dart';
 import 'package:food_app/screens/restaurant_details_screen.dart';
 import 'package:food_app/widgets/restaurant_tags.dart';

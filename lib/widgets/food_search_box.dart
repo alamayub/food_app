@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/screens/filter_screen.dart';
 
 class FoodSearchBox extends StatelessWidget {
   const FoodSearchBox({Key? key}) : super(key: key);
@@ -45,7 +46,10 @@ class FoodSearchBox extends StatelessWidget {
               borderRadius: BorderRadius.circular(6),
             ),
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const FilterScreen()));
+              },
               icon: Icon(
                 Icons.menu,
                 color: Theme.of(context).primaryColor,

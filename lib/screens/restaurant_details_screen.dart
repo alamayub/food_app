@@ -41,21 +41,19 @@ class RestaurantDetailsScreen extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: BottomAppBar(
-        child: Container(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  primary: Theme.of(context).primaryColor,
-                  shape: const RoundedRectangleBorder(),
-                  padding: const EdgeInsets.symmetric(horizontal: 50),
-                ),
-                onPressed: () {},
-                child: const Text('Basket'),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Theme.of(context).primaryColor,
+                shape: const RoundedRectangleBorder(),
+                padding: const EdgeInsets.symmetric(horizontal: 50),
               ),
-            ],
-          ),
+              onPressed: () {},
+              child: const Text('Basket'),
+            ),
+          ],
         ),
       ),
     );
