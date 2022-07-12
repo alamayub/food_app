@@ -4,11 +4,15 @@ import 'package:food_app/widgets/restaurant_info.dart';
 
 class RestaurantDetailsScreen extends StatelessWidget {
   final Restaurant restaurant;
-  const RestaurantDetailsScreen({Key? key, required this.restaurant}) : super(key: key);
+  const RestaurantDetailsScreen({
+    Key? key,
+    required this.restaurant,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,

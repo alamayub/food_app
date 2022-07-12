@@ -17,7 +17,7 @@ class Category extends Equatable {
   static List<Category> categories = const [
     Category(
       id: 1,
-      name: 'Pizaa',
+      name: 'Pizza',
       image:
           'https://static.toiimg.com/photo/msid-87930581/87930581.jpg?211826',
     ),

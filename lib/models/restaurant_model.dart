@@ -50,7 +50,7 @@ class Restaurant extends Equatable {
       image:
           'https://media-cdn.tripadvisor.com/media/photo-s/1a/b8/46/6d/london-stock.jpg',
       name: 'BuffeBite Restaurant',
-      tags: const ['Thali', 'Indian', 'Biryani', 'Kabab'],
+      tags: const ['Thali', 'Indian', 'Biryani', 'Pizza'],
       menuItems: MenuItem.menuItems.where((e) => e.id == 2).toList(),
       deliveryTime: 30,
       deliveryFee: 25.2,
@@ -72,7 +72,7 @@ class Restaurant extends Equatable {
       image:
           'https://imageio.forbes.com/specials-images/imageserve/628e3814b2b4253c117d4f13/Dining-Column-on-New-Heights-Restaurant/960x0.jpg?format=jpg&width=960',
       name: 'Mike Perry Restaurant',
-      tags: const ['Mushroom', 'Indian', 'Biryani', 'Kabab'],
+      tags: const ['Mushroom', 'Indian', 'Biryani', 'Pizza'],
       menuItems: MenuItem.menuItems.where((e) => e.id == 4).toList(),
       deliveryTime: 30,
       deliveryFee: 25.2,

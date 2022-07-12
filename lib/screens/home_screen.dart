@@ -55,7 +55,9 @@ class HomeScreen extends StatelessWidget {
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
                 itemCount: Promo.promos.length,
-                itemBuilder: (context, index) => PromoBox(promo: Promo.promos[index],),
+                itemBuilder: (context, index) => PromoBox(
+                  promo: Promo.promos[index],
+                ),
                 separatorBuilder: (context, index) => const SizedBox(width: 16),
               ),
             ),
@@ -99,6 +101,7 @@ class CustomAppbar extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      elevation: 0,
       leading: IconButton(
         onPressed: () {},
         icon: const Icon(Icons.person),
