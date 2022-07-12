@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/models/category_model.dart';
+import 'package:food_app/widgets/category_box.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -14,17 +16,70 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home Screen'),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.pushNamed(context, '/location');
-          },
-          child: const Text('Location Screen'),
+      appBar: const CustomAppbar(),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            // category list
+            SizedBox(
+              height: 115,
+              child: ListView.separated(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 8,
+                ),
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemCount: Category.categories.length,
+                itemBuilder: (context, index) => CategoryBox(
+                  category: Category.categories[index],
+                ),
+                separatorBuilder: (context, index) => const SizedBox(width: 16),
+              ),
+            ),
+            // promobox list
+            
+          ],
         ),
       ),
     );
   }
+}
+
+class CustomAppbar extends StatelessWidget with PreferredSizeWidget {
+  const CustomAppbar({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      leading: IconButton(
+        onPressed: () {},
+        icon: const Icon(Icons.person),
+      ),
+      title: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'CURRENT LOCATION',
+            style: Theme.of(context)
+                .textTheme
+                .bodyText1!
+                .copyWith(color: Colors.white),
+          ),
+          Text(
+            'Panitanki-10, Birgunj',
+            style: Theme.of(context)
+                .textTheme
+                .headline6!
+                .copyWith(color: Colors.white),
+          )
+        ],
+      ),
+    );
+  }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(56);
 }

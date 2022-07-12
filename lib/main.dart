@@ -9,7 +9,7 @@ import 'package:food_app/config/app_router.dart';
 import 'package:food_app/config/theme.dart';
 import 'package:food_app/repositories/geolocator/geolocation_repository.dart';
 import 'package:food_app/repositories/places/places_repository.dart';
-import 'package:food_app/screens/location_screen.dart';
+import 'package:food_app/screens/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
           title: 'Flutter Demo',
           theme: theme(),
           onGenerateRoute: AppRouter.onGenerateRoute,
-          initialRoute: LocationScreen.routeName,
+          initialRoute: HomeScreen.routeName,
         ),
       ),
     );
