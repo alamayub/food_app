@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app/blocs/autocomplete/autocomplete_bloc.dart';
 import 'package:food_app/blocs/autocomplete/autocomplete_event.dart';
+import 'package:food_app/blocs/filters/filter_bloc.dart';
+import 'package:food_app/blocs/filters/filter_state.dart';
 import 'package:food_app/blocs/geolocation/geolocation_bloc.dart';
 import 'package:food_app/blocs/geolocation/geolocation_event.dart';
 import 'package:food_app/blocs/place/place_bloc.dart';
@@ -45,6 +47,9 @@ class MyApp extends StatelessWidget {
             create: (context) => PlaceBloc(
               placesRepository: context.read<PlacesRepository>(),
             ),
+          ),
+          BlocProvider(
+            create: (context) => FilterBloc()..add(FilterLoad()),
           ),
         ],
         child: MaterialApp(
