@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_app/blocs/basket/basket_bloc.dart';
+import 'package:food_app/blocs/basket/basket_event.dart';
+import 'package:food_app/blocs/basket/basket_state.dart';
 import 'package:food_app/screens/checkout_screen.dart';
 
 class BasketScreen extends StatelessWidget {
   const BasketScreen({Key? key}) : super(key: key);
-
-  static const String routeName = '/basket';
-  static Route route() {
-    return MaterialPageRoute(
-      builder: (_) => const BasketScreen(),
-      settings: const RouteSettings(name: routeName),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,14 +14,241 @@ class BasketScreen extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         title: const Text('Basket Screen'),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.edit),
+          ),
+        ],
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Cutlery',
+              style: Theme.of(context)
+                  .textTheme
+                  .headline4!
+                  .copyWith(color: Theme.of(context).primaryColor),
+            ),
+            Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: Colors.greenAccent,
+                borderRadius: BorderRadius.circular(6),
+              ),
+              child: BlocBuilder<BasketBloc, BasketState>(
+                builder: (context, state) {
+                  if (state is BasketLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (state is BasketLoaded) {
+                    return SwitchListTile(
+                      visualDensity: VisualDensity.adaptivePlatformDensity,
+                      dense: true,
+                      onChanged: (val) {
+                        context.read<BasketBloc>().add(const ToggleSwitch());
+                      },
+                      value: state.basket.cutlery,
+                      title: const Text("Do you need cutlery?"),
+                    );
+                  } else {
+                    return const Text('Something went wrong!');
+                  }
+                },
+              ),
+            ),
+            Text(
+              'Items',
+              style: Theme.of(context)
+                  .textTheme
+                  .headline4!
+                  .copyWith(color: Theme.of(context).primaryColor),
+            ),
+            BlocBuilder<BasketBloc, BasketState>(
+              builder: (context, state) {
+                if (state is BasketLoading) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (state is BasketLoaded) {
+                  return state.basket.items.isEmpty
+                      ? Container(
+                          padding: const EdgeInsets.symmetric(
+                            vertical: 8,
+                            horizontal: 16,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                          alignment: Alignment.center,
+                          child: Text(
+                            'No item in the beasket',
+                            style: Theme.of(context).textTheme.headline6,
+                          ),
+                        )
+                      : ListView.separated(
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            return ListTile(
+                              dense: true,
+                              minLeadingWidth: 0,
+                              tileColor:
+                                  const Color.fromARGB(255, 233, 233, 233),
+                              leading: Container(
+                                width: 20,
+                                alignment: Alignment.center,
+                                child: Text(
+                                  '${state.basket.itemQuantity(state.basket.items).entries.elementAt(index).value}x',
+                                  style: Theme.of(context).textTheme.headline6,
+                                ),
+                              ),
+                              title: Text(
+                                '${state.basket.itemQuantity(state.basket.items).keys.elementAt(index).name}',
+                                style: Theme.of(context).textTheme.headline6,
+                              ),
+                              trailing: Text(
+                                '\$${state.basket.itemQuantity(state.basket.items).keys.elementAt(index).price}',
+                                style: Theme.of(context).textTheme.headline6,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(6),
+                              ),
+                            );
+                          },
+                          separatorBuilder: (context, index) =>
+                              const SizedBox(height: 6),
+                          itemCount: state.basket
+                              .itemQuantity(state.basket.items)
+                              .keys
+                              .length,
+                        );
+                } else {
+                  return const Text('Something went wrong!');
+                }
+              },
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 16),
+              height: 100,
+              width: double.infinity,
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Colors.grey[100],
+                borderRadius: BorderRadius.circular(6),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    'Delivery in 20 Minutes',
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
+                  TextButton(
+                    onPressed: () {},
+                    child: const Text('Change'),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 16),
+              height: 100,
+              width: double.infinity,
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Colors.grey[100],
+                borderRadius: BorderRadius.circular(6),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    'Do you have a voucher?',
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
+                  TextButton(
+                    onPressed: () {},
+                    child: const Text('Apply'),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(top: 16),
+              height: 100,
+              width: double.infinity,
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Colors.grey[100],
+                borderRadius: BorderRadius.circular(6),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Subtotal',
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                      Text(
+                        '\$4.99',
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Delivery fee',
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                      Text(
+                        '\$4.99',
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Total',
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline6!
+                            .copyWith(color: Theme.of(context).primaryColor),
+                      ),
+                      Text(
+                        '\$4.99',
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline6!
+                            .copyWith(color: Theme.of(context).primaryColor),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
       ),
       bottomNavigationBar: BottomAppBar(
         child: MaterialButton(
           height: 50,
           color: Theme.of(context).primaryColor,
           onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => const CheckoutScreen()));
+            Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => const CheckoutScreen()),
+            );
           },
           child: const Text('Go To Checkout'),
         ),

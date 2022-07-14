@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_app/blocs/basket/basket_bloc.dart';
+import 'package:food_app/blocs/basket/basket_event.dart';
+import 'package:food_app/blocs/basket/basket_state.dart';
 import 'package:food_app/models/restaurant_model.dart';
 import 'package:food_app/widgets/restaurant_tags.dart';
 
@@ -91,9 +95,25 @@ Widget _buildMenuItems(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text('\$${menuItem.price}'),
-                          IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.add_circle),
+                          BlocBuilder<BasketBloc, BasketState>(
+                            builder: (context, state) {
+                              if (state is BasketLoading) {
+                                return const Center(
+                                  child: CircularProgressIndicator(),
+                                );
+                              } else if (state is BasketLoaded) {
+                                return IconButton(
+                                  onPressed: () {
+                                    context
+                                        .read<BasketBloc>()
+                                        .add(AddItem(item: menuItem));
+                                  },
+                                  icon: const Icon(Icons.add_circle),
+                                );
+                              } else {
+                                return const Text('Something went wrong!');
+                              }
+                            },
                           ),
                         ],
                       ),
@@ -102,32 +122,6 @@ Widget _buildMenuItems(
                 ))
             .toList(),
       )
-      // Column(
-      //   children: restaurant.menuItems
-      //       .where((menuItem) => menuItem.category == restaurant.tags[index])
-      //       .map(
-      //         (x) => Column(
-      //           children: [
-      //             ListTile(
-      //               title: Text(x.name),
-      //               subtitle: Text(x.description),
-      //               trailing: Row(
-      //                 children: [
-      //                   Text('\$${x.price}'),
-      //                   IconButton(
-      //                     onPressed: () {},
-      //                     icon: const Icon(
-      //                       Icons.add_circle,
-      //                     ),
-      //                   )
-      //                 ],
-      //               ),
-      //             )
-      //           ],
-      //         ),
-      //       )
-      //       .toList(),
-      // )
     ],
   );
 }
