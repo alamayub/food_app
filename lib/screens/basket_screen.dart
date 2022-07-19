@@ -187,55 +187,67 @@ class BasketScreen extends StatelessWidget {
                 color: Colors.grey[100],
                 borderRadius: BorderRadius.circular(6),
               ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Subtotal',
-                        style: Theme.of(context).textTheme.headline6,
-                      ),
-                      Text(
-                        '\$4.99',
-                        style: Theme.of(context).textTheme.headline6,
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Delivery fee',
-                        style: Theme.of(context).textTheme.headline6,
-                      ),
-                      Text(
-                        '\$4.99',
-                        style: Theme.of(context).textTheme.headline6,
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Total',
-                        style: Theme.of(context)
-                            .textTheme
-                            .headline6!
-                            .copyWith(color: Theme.of(context).primaryColor),
-                      ),
-                      Text(
-                        '\$4.99',
-                        style: Theme.of(context)
-                            .textTheme
-                            .headline6!
-                            .copyWith(color: Theme.of(context).primaryColor),
-                      ),
-                    ],
-                  )
-                ],
+              child: BlocBuilder<BasketBloc, BasketState>(
+                builder: (context, state) {
+                  if (state is BasketLoading) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (state is BasketLoaded) {
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Subtotal',
+                              style: Theme.of(context).textTheme.headline6,
+                            ),
+                            Text(
+                              '\$${state.basket.subTotalString}',
+                              style: Theme.of(context).textTheme.headline6,
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Delivery fee',
+                              style: Theme.of(context).textTheme.headline6,
+                            ),
+                            Text(
+                              '\$4.99',
+                              style: Theme.of(context).textTheme.headline6,
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Total',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline6!
+                                  .copyWith(
+                                      color: Theme.of(context).primaryColor),
+                            ),
+                            Text(
+                              '\$${state.basket.totalString}',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline6!
+                                  .copyWith(
+                                      color: Theme.of(context).primaryColor),
+                            ),
+                          ],
+                        ),
+                      ],
+                    );
+                  } else {
+                    return const Text('Something went wrong!');
+                  }
+                },
               ),
             )
           ],

@@ -8,6 +8,8 @@ abstract class BasketState extends Equatable {
 class BasketLoading extends BasketState {
   @override
   List<Object?> get props => [];
+
+  get basket => null;
 }
 
 class BasketLoaded extends BasketState {
