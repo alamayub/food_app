@@ -20,7 +20,8 @@ class BasketScreen extends StatelessWidget {
           IconButton(
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const EditBasketScreen()));
+                builder: (context) => const EditBasketScreen(),
+              ));
             },
             icon: const Icon(Icons.edit),
           ),
@@ -168,23 +169,33 @@ class BasketScreen extends StatelessWidget {
                 color: Colors.grey[100],
                 borderRadius: BorderRadius.circular(6),
               ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    'Do you have a voucher?',
-                    style: Theme.of(context).textTheme.headline6,
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const VoucherScreen(),
-                      ));
-                    },
-                    child: const Text('Apply'),
-                  ),
-                ],
+              child: BlocBuilder<BasketBloc, BasketState>(
+                builder: (context, state) {
+                  if (state is BasketLoaded) {
+                    return (state.basket.voucher == null)
+                        ? Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Do you have a voucher?',
+                                style: Theme.of(context).textTheme.headline6,
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => const VoucherScreen(),
+                                  ));
+                                },
+                                child: const Text('Apply'),
+                              ),
+                            ],
+                          )
+                        : const Text('Your voucher is added');
+                  } else {
+                    return const Text('Something went wrong!');
+                  }
+                },
               ),
             ),
             Container(
