@@ -103,8 +103,7 @@ class BasketScreen extends StatelessWidget {
                             return ListTile(
                               dense: true,
                               minLeadingWidth: 0,
-                              tileColor:
-                                  const Color.fromARGB(255, 233, 233, 233),
+                              tileColor: Colors.white,
                               leading: Container(
                                 width: 20,
                                 alignment: Alignment.center,
