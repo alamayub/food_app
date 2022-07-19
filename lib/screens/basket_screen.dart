@@ -4,6 +4,8 @@ import 'package:food_app/blocs/basket/basket_bloc.dart';
 import 'package:food_app/blocs/basket/basket_event.dart';
 import 'package:food_app/blocs/basket/basket_state.dart';
 import 'package:food_app/screens/checkout_screen.dart';
+import 'package:food_app/screens/edit_basket_screen.dart';
+import 'package:food_app/screens/voucher_screen.dart';
 
 class BasketScreen extends StatelessWidget {
   const BasketScreen({Key? key}) : super(key: key);
@@ -16,7 +18,10 @@ class BasketScreen extends StatelessWidget {
         title: const Text('Basket Screen'),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const EditBasketScreen()));
+            },
             icon: const Icon(Icons.edit),
           ),
         ],
@@ -172,7 +177,11 @@ class BasketScreen extends StatelessWidget {
                     style: Theme.of(context).textTheme.headline6,
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const VoucherScreen(),
+                      ));
+                    },
                     child: const Text('Apply'),
                   ),
                 ],
