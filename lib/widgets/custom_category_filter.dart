@@ -11,7 +11,7 @@ class CustomcategoryFilter extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<FilterBloc, FilterState>(
       builder: (context, state) {
-        if (state is FilterLoading) {
+        if (state is FilterLoad) {
           return const Center(
             child: CircularProgressIndicator(),
           );

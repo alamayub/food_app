@@ -4,6 +4,7 @@ import 'package:food_app/blocs/basket/basket_bloc.dart';
 import 'package:food_app/blocs/basket/basket_event.dart';
 import 'package:food_app/blocs/basket/basket_state.dart';
 import 'package:food_app/screens/checkout_screen.dart';
+import 'package:food_app/screens/delivery_time_screen.dart';
 import 'package:food_app/screens/edit_basket_screen.dart';
 import 'package:food_app/screens/voucher_screen.dart';
 
@@ -158,7 +159,12 @@ class BasketScreen extends StatelessWidget {
                                 style: Theme.of(context).textTheme.headline6,
                               ),
                               TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) =>
+                                        const DeliveryTimeScreen(),
+                                  ));
+                                },
                                 child: const Text('Change'),
                               ),
                             ],
