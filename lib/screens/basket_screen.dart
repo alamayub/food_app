@@ -145,19 +145,30 @@ class BasketScreen extends StatelessWidget {
                 color: Colors.grey[100],
                 borderRadius: BorderRadius.circular(6),
               ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    'Delivery in 20 Minutes',
-                    style: Theme.of(context).textTheme.headline6,
-                  ),
-                  TextButton(
-                    onPressed: () {},
-                    child: const Text('Change'),
-                  ),
-                ],
+              child: BlocBuilder<BasketBloc, BasketState>(
+                builder: (context, state) {
+                  if (state is BasketLoaded) {
+                    return (state.basket.deliveryTime == null)
+                        ? Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Select delivery time',
+                                style: Theme.of(context).textTheme.headline6,
+                              ),
+                              TextButton(
+                                onPressed: () {},
+                                child: const Text('Change'),
+                              ),
+                            ],
+                          )
+                        : Text(
+                            'Delivery at ${state.basket.deliveryTime!.value}');
+                  } else {
+                    return const Text('Something went wrong!');
+                  }
+                },
               ),
             ),
             Container(

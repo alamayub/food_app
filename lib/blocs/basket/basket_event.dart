@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:food_app/models/delivery_time_model.dart';
 import 'package:food_app/models/menu_item_model.dart';
 import 'package:food_app/models/voucher_model.dart';
 
@@ -35,6 +36,12 @@ class RemoveAllItem extends BasketEvent {
   List<Object> get props => [item];
 }
 
+class ToggleSwitch extends BasketEvent {
+  const ToggleSwitch();
+  @override
+  List<Object> get props => [];
+}
+
 class AddVoucher extends BasketEvent {
   final Voucher voucher;
   const AddVoucher({required this.voucher});
@@ -42,8 +49,9 @@ class AddVoucher extends BasketEvent {
   List<Object> get props => [voucher];
 }
 
-class ToggleSwitch extends BasketEvent {
-  const ToggleSwitch();
+class SelectDeliveryTime extends BasketEvent {
+  final DeliveryTime deliveryTime;
+  const SelectDeliveryTime({required this.deliveryTime});
   @override
-  List<Object> get props => [];
+  List<Object> get props => [deliveryTime];
 }
