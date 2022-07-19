@@ -1,35 +1,21 @@
 import 'package:equatable/equatable.dart';
-import 'package:food_app/models/category_filter_model.dart';
-import 'package:food_app/models/price_filter_model.dart';
+import 'package:food_app/models/filter_model.dart';
 
-abstract class FilterEvent extends Equatable {
-  const FilterEvent();
+abstract class FilterState extends Equatable {
+  const FilterState();
 
   @override
   List<Object> get props => [];
 }
 
-class FilterLoad extends FilterEvent {
-  @override
-  List<Object> get props => [];
-}
+class FilterLoading extends FilterState {}
 
-class CategoryFilterUpdated extends FilterEvent {
-  final CategoryFilter categoryFilter;
-  const CategoryFilterUpdated({
-    required this.categoryFilter,
+class FilterLoaded extends FilterState {
+  final Filter filter;
+  const FilterLoaded({
+    required this.filter,
   });
 
   @override
-  List<Object> get props => [categoryFilter];
-}
-
-class PriceFilterUpdated extends FilterEvent {
-  final PriceFilter priceFilter;
-  const PriceFilterUpdated({
-    required this.priceFilter,
-  });
-
-  @override
-  List<Object> get props => [priceFilter];
+  List<Object> get props => [filter];
 }

@@ -13,7 +13,6 @@ class RestaurantDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -44,7 +43,7 @@ class RestaurantDetailsScreen extends StatelessWidget {
       bottomNavigationBar: BottomAppBar(
         child: MaterialButton(
           height: 50,
-          color: Theme.of(context).primaryColor,
+          color: Theme.of(context).colorScheme.primary,
           onPressed: () {
             Navigator.of(context).push(
                 MaterialPageRoute(builder: (context) => const BasketScreen()));

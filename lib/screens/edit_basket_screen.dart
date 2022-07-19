@@ -24,7 +24,7 @@ class EditBasketScreen extends StatelessWidget {
               style: Theme.of(context)
                   .textTheme
                   .headline4!
-                  .copyWith(color: Theme.of(context).primaryColor),
+                  .copyWith(color: Theme.of(context).colorScheme.primary),
             ),
             BlocBuilder<BasketBloc, BasketState>(
               builder: (context, state) {
@@ -136,7 +136,7 @@ class EditBasketScreen extends StatelessWidget {
       bottomNavigationBar: BottomAppBar(
         child: MaterialButton(
           height: 50,
-          color: Theme.of(context).primaryColor,
+          color: Theme.of(context).colorScheme.primary,
           onPressed: () {
             Navigator.of(context).pop();
           },

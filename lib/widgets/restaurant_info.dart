@@ -28,7 +28,7 @@ class RestaurantInfo extends StatelessWidget {
             style: Theme.of(context)
                 .textTheme
                 .headline3!
-                .copyWith(color: Theme.of(context).primaryColor),
+                .copyWith(color: Theme.of(context).colorScheme.primary),
           ),
           const SizedBox(height: 10),
           RestaurantTags(restaurant: restaurant),
@@ -76,7 +76,7 @@ Widget _buildMenuItems(
         style: Theme.of(context)
             .textTheme
             .headline3!
-            .copyWith(color: Theme.of(context).primaryColor),
+            .copyWith(color: Theme.of(context).colorScheme.primary),
       ),
       const SizedBox(height: 6),
       Column(

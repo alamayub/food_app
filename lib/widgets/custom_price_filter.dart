@@ -26,7 +26,7 @@ class CustomPriceFilter extends StatelessWidget {
                   (price) => GestureDetector(
                     onTap: () {
                       context.read<FilterBloc>().add(
-                            PriceFilterUpdated(
+                            UpdatePriceFilter(
                               priceFilter:
                                   state.filter.priceFilter[price.key].copyWith(
                                 value:
@@ -41,7 +41,10 @@ class CustomPriceFilter extends StatelessWidget {
                       width: MediaQuery.of(context).size.width * .25,
                       decoration: BoxDecoration(
                         color: state.filter.priceFilter[price.key].value
-                            ? Theme.of(context).primaryColor.withAlpha(100)
+                            ? Theme.of(context)
+                                .colorScheme
+                                .primary
+                                .withAlpha(100)
                             : Colors.white,
                         borderRadius: BorderRadius.circular(6),
                       ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app/blocs/filters/filter_bloc.dart';
-import 'package:food_app/blocs/filters/filter_event.dart';
+import 'package:food_app/blocs/filters/filter_state.dart';
 import 'package:food_app/models/restaurant_model.dart';
 import 'package:food_app/screens/restaurant_list_screen.dart';
 import 'package:food_app/widgets/custom_category_filter.dart';
@@ -13,7 +13,6 @@ class FilterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
       appBar: AppBar(
         elevation: 0,
         title: const Text('filter Screen'),
@@ -31,7 +30,7 @@ class FilterScreen extends StatelessWidget {
               style: Theme.of(context)
                   .textTheme
                   .headline4!
-                  .copyWith(color: Theme.of(context).primaryColor),
+                  .copyWith(color: Theme.of(context).colorScheme.primary),
             ),
             const SizedBox(height: 10),
             const CustomPriceFilter(),
@@ -41,7 +40,7 @@ class FilterScreen extends StatelessWidget {
               style: Theme.of(context)
                   .textTheme
                   .headline4!
-                  .copyWith(color: Theme.of(context).primaryColor),
+                  .copyWith(color: Theme.of(context).colorScheme.primary),
             ),
             const SizedBox(height: 10),
             const CustomcategoryFilter()
@@ -52,14 +51,12 @@ class FilterScreen extends StatelessWidget {
         child: BlocBuilder<FilterBloc, FilterState>(
           builder: (context, state) {
             if (state is FilterLoading) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
+              return const Center(child: CircularProgressIndicator());
             }
             if (state is FilterLoaded) {
               return MaterialButton(
                 height: 50,
-                color: Theme.of(context).primaryColor,
+                color: Theme.of(context).colorScheme.primary,
                 onPressed: () {
                   var categories = state.filter.categoryFilter
                       .where((x) => x.value)

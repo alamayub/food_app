@@ -38,12 +38,12 @@ class BasketScreen extends StatelessWidget {
               style: Theme.of(context)
                   .textTheme
                   .headline4!
-                  .copyWith(color: Theme.of(context).primaryColor),
+                  .copyWith(color: Theme.of(context).colorScheme.primary),
             ),
             Container(
               width: double.infinity,
               decoration: BoxDecoration(
-                color: Colors.greenAccent,
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(6),
               ),
               child: BlocBuilder<BasketBloc, BasketState>(
@@ -56,6 +56,7 @@ class BasketScreen extends StatelessWidget {
                     return SwitchListTile(
                       visualDensity: VisualDensity.adaptivePlatformDensity,
                       dense: true,
+                      activeColor: Theme.of(context).colorScheme.primary,
                       onChanged: (val) {
                         context.read<BasketBloc>().add(const ToggleSwitch());
                       },
@@ -73,7 +74,7 @@ class BasketScreen extends StatelessWidget {
               style: Theme.of(context)
                   .textTheme
                   .headline4!
-                  .copyWith(color: Theme.of(context).primaryColor),
+                  .copyWith(color: Theme.of(context).colorScheme.primary),
             ),
             BlocBuilder<BasketBloc, BasketState>(
               builder: (context, state) {
@@ -142,8 +143,9 @@ class BasketScreen extends StatelessWidget {
               height: 100,
               width: double.infinity,
               padding: const EdgeInsets.all(12),
+              alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: Colors.grey[100],
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(6),
               ),
               child: BlocBuilder<BasketBloc, BasketState>(
@@ -182,8 +184,9 @@ class BasketScreen extends StatelessWidget {
               height: 100,
               width: double.infinity,
               padding: const EdgeInsets.all(12),
+              alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: Colors.grey[100],
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(6),
               ),
               child: BlocBuilder<BasketBloc, BasketState>(
@@ -221,7 +224,7 @@ class BasketScreen extends StatelessWidget {
               width: double.infinity,
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: Colors.grey[100],
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(6),
               ),
               child: BlocBuilder<BasketBloc, BasketState>(
@@ -267,7 +270,9 @@ class BasketScreen extends StatelessWidget {
                                   .textTheme
                                   .headline6!
                                   .copyWith(
-                                      color: Theme.of(context).primaryColor),
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .primary),
                             ),
                             Text(
                               '\$${state.basket.totalString}',
@@ -275,7 +280,9 @@ class BasketScreen extends StatelessWidget {
                                   .textTheme
                                   .headline6!
                                   .copyWith(
-                                      color: Theme.of(context).primaryColor),
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .primary),
                             ),
                           ],
                         ),
@@ -293,7 +300,7 @@ class BasketScreen extends StatelessWidget {
       bottomNavigationBar: BottomAppBar(
         child: MaterialButton(
           height: 50,
-          color: Theme.of(context).primaryColor,
+          color: Theme.of(context).colorScheme.primary,
           onPressed: () {
             Navigator.of(context).push(
               MaterialPageRoute(builder: (context) => const CheckoutScreen()),

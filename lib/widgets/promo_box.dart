@@ -3,7 +3,10 @@ import 'package:food_app/models/promo_mode.dart';
 
 class PromoBox extends StatelessWidget {
   final Promo promo;
-  const PromoBox({Key? key, required this.promo,}) : super(key: key);
+  const PromoBox({
+    Key? key,
+    required this.promo,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +14,7 @@ class PromoBox extends StatelessWidget {
       Container(
         width: MediaQuery.of(context).size.width - 32,
         decoration: BoxDecoration(
-          color: Theme.of(context).primaryColor,
+          color: Theme.of(context).colorScheme.primary,
           borderRadius: BorderRadius.circular(6),
           image: DecorationImage(
             image: NetworkImage(promo.image),
@@ -24,7 +27,7 @@ class PromoBox extends StatelessWidget {
         child: Container(
           width: MediaQuery.of(context).size.width - 32,
           decoration: BoxDecoration(
-            color: Theme.of(context).primaryColor,
+            color: Theme.of(context).colorScheme.primary,
             borderRadius: BorderRadius.circular(6),
           ),
           padding: const EdgeInsets.only(top: 10, left: 15, right: 125),

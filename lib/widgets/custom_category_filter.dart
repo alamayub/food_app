@@ -11,7 +11,7 @@ class CustomcategoryFilter extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<FilterBloc, FilterState>(
       builder: (context, state) {
-        if (state is FilterLoad) {
+        if (state is FilterLoading) {
           return const Center(
             child: CircularProgressIndicator(),
           );
@@ -37,9 +37,10 @@ class CustomcategoryFilter extends StatelessWidget {
                     width: 20,
                     child: Checkbox(
                       value: state.filter.categoryFilter[index].value,
+                      activeColor: Theme.of(context).colorScheme.primary,
                       onChanged: (bool? val) {
                         context.read<FilterBloc>().add(
-                              CategoryFilterUpdated(
+                              UpdateCategoryFilter(
                                 categoryFilter:
                                     state.filter.categoryFilter[index].copyWith(
                                   value:
