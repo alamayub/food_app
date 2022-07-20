@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app/blocs/autocomplete/autocomplete_bloc.dart';
@@ -9,13 +10,18 @@ import 'package:food_app/blocs/filters/filter_event.dart';
 import 'package:food_app/blocs/geolocation/geolocation_bloc.dart';
 import 'package:food_app/blocs/geolocation/geolocation_event.dart';
 import 'package:food_app/blocs/place/place_bloc.dart';
+import 'package:food_app/blocs/voucher/voucher_bloc.dart';
 import 'package:food_app/config/simple_bloc_observer.dart';
 import 'package:food_app/config/theme.dart';
+import 'package:food_app/firebase_options.dart';
 import 'package:food_app/repositories/geolocator/geolocation_repository.dart';
 import 'package:food_app/repositories/places/places_repository.dart';
+import 'package:food_app/repositories/voucher/voucher_repository.dart';
 import 'package:food_app/screens/home_screen.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   BlocOverrides.runZoned(
     () {
       runApp(const MyApp());
@@ -60,7 +66,14 @@ class MyApp extends StatelessWidget {
             create: (context) => FilterBloc()..add(LoadFilter()),
           ),
           BlocProvider(
-            create: (context) => BasketBloc()..add(StartBasket()),
+            create: (context) =>
+                VoucherBloc(voucherRepository: VoucherRepository())
+                  ..add(LoadVouchers()),
+          ),
+          BlocProvider(
+            create: (context) => BasketBloc(
+              voucherBloc: BlocProvider.of<VoucherBloc>(context),
+            )..add(StartBasket()),
           ),
         ],
         child: MaterialApp(
