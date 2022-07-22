@@ -7,8 +7,9 @@ import 'package:food_app/blocs/voucher/voucher_bloc.dart';
 import 'package:food_app/models/basket_model.dart';
 
 class BasketBloc extends Bloc<BasketEvent, BasketState> {
+  // ignore: unused_field
   final VoucherBloc _voucherBloc;
-  late StreamSubscription _voucherSubscription;
+  StreamSubscription? _voucherSubscription;
   BasketBloc({required VoucherBloc voucherBloc})
       : _voucherBloc = voucherBloc,
         super(BasketLoading()) {
@@ -60,19 +61,6 @@ class BasketBloc extends Bloc<BasketEvent, BasketState> {
         } catch (_) {}
       }
     });
-    // toggle switch for cutlery
-    on<ToggleSwitch>((event, emit) async {
-      final state = this.state;
-      if (state is BasketLoaded) {
-        try {
-          emit(BasketLoaded(
-            basket: state.basket.copyWith(
-              cutlery: !state.basket.cutlery,
-            ),
-          ));
-        } catch (_) {}
-      }
-    });
     // add voucher to the basket
     on<ApplyVoucher>((event, emit) async {
       final state = this.state;
@@ -102,5 +90,11 @@ class BasketBloc extends Bloc<BasketEvent, BasketState> {
         add(ApplyVoucher(voucher: state.voucher));
       }
     });
+  }
+
+  @override
+  Future<void> close() async {
+    _voucherSubscription?.cancel();
+    super.close();
   }
 }

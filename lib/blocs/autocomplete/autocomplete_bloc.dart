@@ -13,7 +13,6 @@ class AutocompleteBloc extends Bloc<AutocompleteEvent, AutocompleteState> {
       : _placesRepository = placesRepository,
         super(AutocompleteLoading());
 
-  @override
   Stream<AutocompleteState> mapEventToState(AutocompleteEvent event) async* {
     if (event is LoadAutocomplete) {
       yield* _mapLoadAutocompleteToState(event);

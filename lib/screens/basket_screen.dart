@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app/blocs/basket/basket_bloc.dart';
-import 'package:food_app/blocs/basket/basket_event.dart';
 import 'package:food_app/blocs/basket/basket_state.dart';
 import 'package:food_app/screens/checkout_screen.dart';
 import 'package:food_app/screens/delivery_time_screen.dart';
@@ -33,42 +32,6 @@ class BasketScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Cutlery',
-              style: Theme.of(context)
-                  .textTheme
-                  .headline4!
-                  .copyWith(color: Theme.of(context).colorScheme.primary),
-            ),
-            Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(6),
-              ),
-              child: BlocBuilder<BasketBloc, BasketState>(
-                builder: (context, state) {
-                  if (state is BasketLoading) {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  } else if (state is BasketLoaded) {
-                    return SwitchListTile(
-                      visualDensity: VisualDensity.adaptivePlatformDensity,
-                      dense: true,
-                      activeColor: Theme.of(context).colorScheme.primary,
-                      onChanged: (val) {
-                        context.read<BasketBloc>().add(const ToggleSwitch());
-                      },
-                      value: state.basket.cutlery,
-                      title: const Text("Do you need cutlery?"),
-                    );
-                  } else {
-                    return const Text('Something went wrong!');
-                  }
-                },
-              ),
-            ),
             Text(
               'Items',
               style: Theme.of(context)

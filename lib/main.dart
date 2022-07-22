@@ -17,7 +17,7 @@ import 'package:food_app/firebase_options.dart';
 import 'package:food_app/repositories/geolocator/geolocation_repository.dart';
 import 'package:food_app/repositories/places/places_repository.dart';
 import 'package:food_app/repositories/voucher/voucher_repository.dart';
-import 'package:food_app/screens/home_screen.dart';
+import 'package:food_app/screens/toeato.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -79,7 +79,7 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
           title: 'Flutter Demo',
           theme: theme(),
-          home: const HomeScreen(),
+          home: const Toeato(),
         ),
       ),
     );
