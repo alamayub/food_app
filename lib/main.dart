@@ -5,6 +5,7 @@ import 'package:food_app/blocs/autocomplete/autocomplete_bloc.dart';
 import 'package:food_app/blocs/autocomplete/autocomplete_event.dart';
 import 'package:food_app/blocs/basket/basket_bloc.dart';
 import 'package:food_app/blocs/basket/basket_event.dart';
+import 'package:food_app/blocs/category/category_bloc.dart';
 import 'package:food_app/blocs/filters/filter_bloc.dart';
 import 'package:food_app/blocs/filters/filter_event.dart';
 import 'package:food_app/blocs/geolocation/geolocation_bloc.dart';
@@ -14,6 +15,7 @@ import 'package:food_app/blocs/voucher/voucher_bloc.dart';
 import 'package:food_app/config/simple_bloc_observer.dart';
 import 'package:food_app/config/theme.dart';
 import 'package:food_app/firebase_options.dart';
+import 'package:food_app/repositories/category/category_repository.dart';
 import 'package:food_app/repositories/geolocator/geolocation_repository.dart';
 import 'package:food_app/repositories/places/places_repository.dart';
 import 'package:food_app/repositories/voucher/voucher_repository.dart';
@@ -75,8 +77,14 @@ class MyApp extends StatelessWidget {
               voucherBloc: BlocProvider.of<VoucherBloc>(context),
             )..add(StartBasket()),
           ),
+          BlocProvider(
+            create: (context) =>
+                CategoryBloc(categoryRepository: CategoryRepository())
+                  ..add(LoadCategory()),
+          ),
         ],
         child: MaterialApp(
+          debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
           theme: theme(),
           home: const Toeato(),

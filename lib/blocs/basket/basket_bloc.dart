@@ -9,6 +9,7 @@ import 'package:food_app/models/basket_model.dart';
 class BasketBloc extends Bloc<BasketEvent, BasketState> {
   // ignore: unused_field
   final VoucherBloc _voucherBloc;
+  // ignore: unused_field
   StreamSubscription? _voucherSubscription;
   BasketBloc({required VoucherBloc voucherBloc})
       : _voucherBloc = voucherBloc,
@@ -90,11 +91,5 @@ class BasketBloc extends Bloc<BasketEvent, BasketState> {
         add(ApplyVoucher(voucher: state.voucher));
       }
     });
-  }
-
-  @override
-  Future<void> close() async {
-    _voucherSubscription?.cancel();
-    super.close();
   }
 }

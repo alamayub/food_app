@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:food_app/models/category_model.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_app/blocs/category/category_bloc.dart';
 import 'package:food_app/models/promo_mode.dart';
 import 'package:food_app/models/restaurant_model.dart';
 import 'package:food_app/widgets/category_box.dart';
@@ -26,18 +27,29 @@ class _HomeScreenState extends State<HomeScreen> {
           // category list
           SizedBox(
             height: 115,
-            child: ListView.separated(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 8,
-              ),
-              shrinkWrap: true,
-              scrollDirection: Axis.horizontal,
-              itemCount: Category.categories.length,
-              itemBuilder: (context, index) => CategoryBox(
-                category: Category.categories[index],
-              ),
-              separatorBuilder: (context, index) => const SizedBox(width: 16),
+            child: BlocBuilder<CategoryBloc, CategoryState>(
+              builder: (context, state) {
+                if (state is CategoryLoading) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (state is CategoryLoaded) {
+                  return ListView.separated(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 8,
+                    ),
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemCount: state.categories.length,
+                    itemBuilder: (context, index) => CategoryBox(
+                      category: state.categories[index],
+                    ),
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(width: 16),
+                  );
+                } else {
+                  return const Center(child: Text('Somthing went wrong!'));
+                }
+              },
             ),
           ),
           // promobox list

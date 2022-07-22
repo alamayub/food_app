@@ -28,4 +28,10 @@ class VoucherBloc extends Bloc<VoucherEvent, VoucherState> {
       emit(VoucherSelected(voucher: event.voucher));
     });
   }
+
+  @override
+  Future<void> close() async {
+    _voucherSubcription?.cancel();
+    super.close();
+  }
 }

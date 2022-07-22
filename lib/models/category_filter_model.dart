@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:food_app/models/category_model.dart';
 
 class CategoryFilter extends Equatable {
-  final int id;
+  final String id;
   final Category category;
   final bool value;
 
@@ -13,7 +13,7 @@ class CategoryFilter extends Equatable {
   });
 
   CategoryFilter copyWith({
-    int? id,
+    String? id,
     Category? category,
     bool? value,
   }) {
@@ -29,7 +29,7 @@ class CategoryFilter extends Equatable {
 
   static List<CategoryFilter> filters = Category.categories
       .map((category) => CategoryFilter(
-            id: category.id,
+            id: category.id!,
             category: category,
             value: false,
           ))
