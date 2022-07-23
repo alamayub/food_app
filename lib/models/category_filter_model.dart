@@ -28,10 +28,12 @@ class CategoryFilter extends Equatable {
   List<Object?> get props => [id, category, value];
 
   static List<CategoryFilter> filters = Category.categories
-      .map((category) => CategoryFilter(
-            id: category.id!,
-            category: category,
-            value: false,
-          ))
+      .map(
+        (category) => CategoryFilter(
+          id: category.id!,
+          category: category,
+          value: false,
+        ),
+      )
       .toList();
 }

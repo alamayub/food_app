@@ -16,8 +16,9 @@ class Filter extends Equatable {
     List<PriceFilter>? priceFilter,
   }) {
     return Filter(
-        categoryFilter: categoryFilter ?? this.categoryFilter,
-        priceFilter: priceFilter ?? this.priceFilter);
+      categoryFilter: categoryFilter ?? this.categoryFilter,
+      priceFilter: priceFilter ?? this.priceFilter,
+    );
   }
 
   @override

@@ -7,6 +7,8 @@ class Restaurant extends Equatable {
   final List<dynamic> categories;
   final String description;
   final String image;
+  final double deliveryTime;
+  final double minimumOrder;
 
   const Restaurant({
     this.id,
@@ -14,6 +16,8 @@ class Restaurant extends Equatable {
     required this.categories,
     required this.description,
     required this.image,
+    required this.deliveryTime,
+    required this.minimumOrder,
   });
 
   Restaurant copyWith({
@@ -22,6 +26,8 @@ class Restaurant extends Equatable {
     List<String>? categories,
     String? description,
     String? image,
+    double? deliveryTime,
+    double? minimumOrder,
   }) {
     return Restaurant(
       id: id ?? this.id,
@@ -29,6 +35,8 @@ class Restaurant extends Equatable {
       categories: categories ?? this.categories,
       description: description ?? this.description,
       image: image ?? this.image,
+      deliveryTime: deliveryTime ?? this.deliveryTime,
+      minimumOrder: minimumOrder ?? this.minimumOrder,
     );
   }
 
@@ -39,6 +47,8 @@ class Restaurant extends Equatable {
       'categories': categories,
       'description': description,
       'image': image,
+      'deliveryTime': deliveryTime,
+      'minimumOrder': minimumOrder
     };
   }
 
@@ -49,6 +59,8 @@ class Restaurant extends Equatable {
       categories: snap['categories'],
       description: snap['description'],
       image: snap['image'],
+      deliveryTime: snap['deliveryTime'].toDouble(),
+      minimumOrder: snap['minimumOrder'].toDouble(),
     );
   }
 
@@ -59,5 +71,7 @@ class Restaurant extends Equatable {
         categories,
         description,
         image,
+        deliveryTime,
+        minimumOrder,
       ];
 }

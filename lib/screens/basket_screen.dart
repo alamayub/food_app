@@ -264,9 +264,9 @@ class BasketScreen extends StatelessWidget {
           height: 50,
           color: Theme.of(context).colorScheme.primary,
           onPressed: () {
-            Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => const CheckoutScreen()),
-            );
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const CheckoutScreen(),
+            ));
           },
           child: const Text('Go To Checkout'),
         ),

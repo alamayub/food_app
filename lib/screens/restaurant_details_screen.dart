@@ -45,8 +45,9 @@ class RestaurantDetailsScreen extends StatelessWidget {
           height: 50,
           color: Theme.of(context).colorScheme.primary,
           onPressed: () {
-            Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const BasketScreen()));
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const BasketScreen(),
+            ));
           },
           child: const Text('Basket'),
         ),

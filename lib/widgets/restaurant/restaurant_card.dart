@@ -55,7 +55,7 @@ class RestaurantCard extends StatelessWidget {
                       color: Colors.white,
                     ),
                     child: Text(
-                      '30 min',
+                      '${restaurant.deliveryTime} min',
                       style: Theme.of(context).textTheme.bodyText1,
                     ),
                   ),

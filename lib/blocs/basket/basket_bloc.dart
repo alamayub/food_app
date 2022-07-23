@@ -92,4 +92,10 @@ class BasketBloc extends Bloc<BasketEvent, BasketState> {
       }
     });
   }
+
+  // @override
+  // Future<void> close() async {
+  //   _voucherSubscription?.cancel();
+  //   super.close();
+  // }
 }
