@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/models/restaurant_model.dart';
 import 'package:food_app/screens/basket_screen.dart';
-import 'package:food_app/widgets/restaurant_info.dart';
+import 'package:food_app/widgets/restaurant/restaurant_info.dart';
 
 class RestaurantDetailsScreen extends StatelessWidget {
   final Restaurant restaurant;

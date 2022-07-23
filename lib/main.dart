@@ -11,10 +11,13 @@ import 'package:food_app/blocs/filters/filter_event.dart';
 import 'package:food_app/blocs/geolocation/geolocation_bloc.dart';
 import 'package:food_app/blocs/geolocation/geolocation_event.dart';
 import 'package:food_app/blocs/place/place_bloc.dart';
+import 'package:food_app/blocs/restaurant/restaurant_bloc.dart';
+import 'package:food_app/blocs/restaurant/restaurant_event.dart';
 import 'package:food_app/blocs/voucher/voucher_bloc.dart';
 import 'package:food_app/config/simple_bloc_observer.dart';
 import 'package:food_app/config/theme.dart';
 import 'package:food_app/firebase_options.dart';
+import 'package:food_app/repositories/restaurant/restaurant_repository.dart';
 import 'package:food_app/repositories/category/category_repository.dart';
 import 'package:food_app/repositories/geolocator/geolocation_repository.dart';
 import 'package:food_app/repositories/places/places_repository.dart';
@@ -79,13 +82,18 @@ class MyApp extends StatelessWidget {
           ),
           BlocProvider(
             create: (context) =>
+                RestaurantBloc(restaurantRepository: RestaurantRepository())
+                  ..add(LoadRestaurants()),
+          ),
+          BlocProvider(
+            create: (context) =>
                 CategoryBloc(categoryRepository: CategoryRepository())
                   ..add(LoadCategory()),
           ),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          title: 'Flutter Demo',
+          title: 'Toeato',
           theme: theme(),
           home: const Toeato(),
         ),

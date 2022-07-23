@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/models/restaurant_model.dart';
 import 'package:food_app/screens/restaurant_details_screen.dart';
-import 'package:food_app/widgets/restaurant_tags.dart';
+import 'package:food_app/widgets/restaurant/restaurant_tags.dart';
 
 class RestaurantCard extends StatelessWidget {
   final Restaurant restaurant;
@@ -55,7 +55,7 @@ class RestaurantCard extends StatelessWidget {
                       color: Colors.white,
                     ),
                     child: Text(
-                      '${restaurant.deliveryTime} min',
+                      '30 min',
                       style: Theme.of(context).textTheme.bodyText1,
                     ),
                   ),
@@ -75,7 +75,7 @@ class RestaurantCard extends StatelessWidget {
                   RestaurantTags(restaurant: restaurant),
                   const SizedBox(height: 4),
                   Text(
-                    '${restaurant.distance}km - \$${restaurant.deliveryFee} delivery fee',
+                    '3km - \$25 delivery fee',
                     style: Theme.of(context).textTheme.bodyText1,
                   ),
                 ],

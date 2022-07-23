@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app/blocs/category/category_bloc.dart';
+import 'package:food_app/blocs/restaurant/restaurant_bloc.dart';
+import 'package:food_app/blocs/restaurant/restaurant_state.dart';
 import 'package:food_app/models/promo_mode.dart';
-import 'package:food_app/models/restaurant_model.dart';
 import 'package:food_app/widgets/category_box.dart';
 import 'package:food_app/widgets/food_search_box.dart';
 import 'package:food_app/widgets/promo_box.dart';
-import 'package:food_app/widgets/restaurant_card.dart';
+import 'package:food_app/widgets/restaurant/restaurant_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -84,15 +85,27 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          ListView.separated(
-            primary: false,
-            shrinkWrap: true,
-            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-            itemCount: Restaurant.restaurants.length,
-            itemBuilder: (context, index) => RestaurantCard(
-              restaurant: Restaurant.restaurants[index],
-            ),
-            separatorBuilder: (context, index) => const SizedBox(height: 16),
+          BlocBuilder<RestaurantBloc, RestaurantState>(
+            builder: (context, state) {
+              if (state is RestaurantLoading) {
+                return const Center(child: CircularProgressIndicator());
+              } else if (state is RestaurantLoaded) {
+                return ListView.separated(
+                  primary: false,
+                  shrinkWrap: true,
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                  itemCount: state.restaurants.length,
+                  itemBuilder: (context, index) => RestaurantCard(
+                    restaurant: state.restaurants[index],
+                  ),
+                  separatorBuilder: (context, index) =>
+                      const SizedBox(height: 16),
+                );
+              } else {
+                return const Center(child: Text('Somthing went wrong!'));
+              }
+            },
           )
         ],
       ),

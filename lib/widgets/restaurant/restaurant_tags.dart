@@ -12,10 +12,10 @@ class RestaurantTags extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: restaurant.tags
+      children: restaurant.categories
           .map(
-            (tag) => restaurant.tags.indexOf(tag) ==
-                    restaurant.tags.length - 1
+            (tag) => restaurant.categories.indexOf(tag) ==
+                    restaurant.categories.length - 1
                 ? Text(
                     tag,
                     style: Theme.of(context).textTheme.bodyText1,
