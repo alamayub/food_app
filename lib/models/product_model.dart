@@ -9,8 +9,8 @@ class Product extends Equatable {
   final String description;
   final String image;
   final double price;
-  final String commisionType;
-  final double commision;
+  final String commissionType;
+  final double commission;
   final bool featured;
   final bool newProduct;
   final double rating;
@@ -23,8 +23,8 @@ class Product extends Equatable {
     required this.description,
     required this.image,
     required this.price,
-    required this.commisionType,
-    required this.commision,
+    required this.commissionType,
+    required this.commission,
     required this.featured,
     required this.newProduct,
     required this.rating,
@@ -38,8 +38,8 @@ class Product extends Equatable {
     String? description,
     String? image,
     double? price,
-    String? commisionType,
-    double? commision,
+    String? commissionType,
+    double? commission,
     bool? featured,
     bool? newProduct,
     double? rating,
@@ -52,8 +52,8 @@ class Product extends Equatable {
       description: description ?? this.description,
       image: image ?? this.image,
       price: price ?? this.price,
-      commisionType: commisionType ?? this.commisionType,
-      commision: commision ?? this.commision,
+      commissionType: commissionType ?? this.commissionType,
+      commission: commission ?? this.commission,
       featured: featured ?? this.featured,
       newProduct: newProduct ?? this.newProduct,
       rating: rating ?? this.rating,
@@ -69,8 +69,8 @@ class Product extends Equatable {
       'description': description,
       'image': image,
       'price': price,
-      'commisionType': commisionType,
-      'commision': commision,
+      'commissionType': commissionType,
+      'commission': commission,
       'featured': featured,
       'newProduct': newProduct,
       'rating': rating,
@@ -81,16 +81,16 @@ class Product extends Equatable {
     return Product(
       id: snap.id,
       restaurantId: snap['restaurantId'],
-      name: snap['name'],
-      category: snap['category'],
-      description: snap['description'] ?? '',
+      name: snap['name'] ?? '',
+      category: snap['category'] ?? '',
+      description: '',
       image: snap['image'],
       price: snap['price'].toDouble(),
-      commisionType: snap['commisionType'],
-      commision: snap['commision'].toDouble(),
-      featured: snap['featured'],
-      newProduct: snap['newProduct'],
-      rating: snap['rating'].toDouble(),
+      commissionType: snap['commissionType'],
+      commission: snap['commission'].toDouble() ?? 0,
+      featured: snap['featured'] ?? false,
+      newProduct: snap['newProduct'] ?? false,
+      rating: snap['rating'].toDouble() ?? 0,
     );
   }
 

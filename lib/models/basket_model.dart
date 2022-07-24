@@ -1,21 +1,21 @@
 import 'package:equatable/equatable.dart';
 import 'package:food_app/models/delivery_time_model.dart';
-import 'package:food_app/models/menu_item_model.dart';
+import 'package:food_app/models/product_model.dart';
 import 'package:food_app/models/voucher_model.dart';
 
 class Basket extends Equatable {
-  final List<MenuItem> items;
+  final List<Product> items;
   final Voucher? voucher;
   final DeliveryTime? deliveryTime;
 
   const Basket({
-    this.items = const <MenuItem>[],
+    this.items = const <Product>[],
     this.voucher,
     this.deliveryTime,
   });
 
   Basket copyWith({
-    List<MenuItem>? items,
+    List<Product>? items,
     Voucher? voucher,
     DeliveryTime? deliveryTime,
   }) {

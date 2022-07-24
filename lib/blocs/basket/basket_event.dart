@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:food_app/models/delivery_time_model.dart';
-import 'package:food_app/models/menu_item_model.dart';
+import 'package:food_app/models/product_model.dart';
 import 'package:food_app/models/voucher_model.dart';
 
 abstract class BasketEvent extends Equatable {
@@ -16,21 +16,21 @@ class StartBasket extends BasketEvent {
 }
 
 class AddItem extends BasketEvent {
-  final MenuItem item;
+  final Product item;
   const AddItem({required this.item});
   @override
   List<Object> get props => [item];
 }
 
 class RemoveItem extends BasketEvent {
-  final MenuItem item;
+  final Product item;
   const RemoveItem({required this.item});
   @override
   List<Object> get props => [item];
 }
 
 class RemoveAllItem extends BasketEvent {
-  final MenuItem item;
+  final Product item;
   const RemoveAllItem({required this.item});
   @override
   List<Object> get props => [item];
